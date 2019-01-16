@@ -1,4 +1,4 @@
-include_directories(../thirdparty)
+include_directories(../thirdparty ../src/asl/solvers)
 include(CheckCXXCompilerFlag)
 
 if (MSVC)
@@ -79,6 +79,7 @@ endif ()
 
 add_mp_test(cp-test cp-test.cc LIBS function)
 add_dependencies(cp-test cp)
+target_link_libraries(cp-test mp)
 
 add_subdirectory(asl)
 add_subdirectory(solvers)

@@ -1,7 +1,7 @@
 add_mp_test(aslexpr-test aslexpr-test.cc no-unordered-map-test.cc)
 target_link_libraries(aslexpr-test asl)
 
-add_mp_test(aslbuilder-test aslbuilder-test.cc LIBS asl)
+add_mp_test(aslbuilder-test aslbuilder-test.cc LIBS asl mp)
 add_mp_test(aslproblem-test aslproblem-test.cc stderr-redirect.h LIBS asl)
 
 add_library(ampltestsolver SHARED
@@ -9,4 +9,6 @@ add_library(ampltestsolver SHARED
 target_link_libraries(ampltestsolver asl)
 target_compile_definitions(ampltestsolver PRIVATE MP_SOLVER=testsolver)
 
+include_directories(../../src)
 add_mp_test(solver-c-test solver-c-test.cc LIBS ampltestsolver)
+target_link_libraries(solver-c-test mp)
