@@ -70,7 +70,7 @@ add_ampl_library(testlib PRIVATE testlib.cc)
 add_library(function STATIC function.cc function.h)
 target_link_libraries(function asl)
 
-add_mp_test(function-test function-test.cc LIBS function)
+add_mp_test(function-test function-test.cc LIBS function mp)
 
 if (TARGET amplgsl)
   include_directories(${GSL_BINARY_DIR})
