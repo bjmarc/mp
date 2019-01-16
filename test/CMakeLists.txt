@@ -1,4 +1,4 @@
-include_directories(../thirdparty)
+include_directories(../thirdparty ../src/asl/solvers)
 
 if (MSVC)
   # Fix error C1128: number of sections exceeded object file format limit.
@@ -78,6 +78,7 @@ endif ()
 
 add_mp_test(cp-test cp-test.cc LIBS function)
 add_dependencies(cp-test cp)
+target_link_libraries(cp-test mp)
 
 add_subdirectory(asl)
 add_subdirectory(solvers)
