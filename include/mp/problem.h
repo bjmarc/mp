@@ -76,7 +76,6 @@ class LinearExpr {
 class Solver;
 
 /** An optimization problem. */
-template <typename Alloc>
 class BasicProblem : public ExprFactory, public SuffixManager {
  public:
   typedef mp::Function Function;
@@ -928,7 +927,7 @@ class BasicProblem : public ExprFactory, public SuffixManager {
   BasicProblem &problem() { return *this; }
 };
 
-typedef BasicProblem< std::allocator<char> > Problem;
+typedef BasicProblem Problem;
 }  // namespace mp
 
 #endif  // MP_PROBLEM_H_

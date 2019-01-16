@@ -25,8 +25,7 @@
 
 namespace mp {
 
-template <typename Alloc>
-int BasicProblem<Alloc>::GetSuffixSize(suf::Kind kind) {
+int BasicProblem::GetSuffixSize(suf::Kind kind) {
   std::size_t size = 0;
   switch (kind) {
   default:
@@ -48,8 +47,7 @@ int BasicProblem<Alloc>::GetSuffixSize(suf::Kind kind) {
   return static_cast<int>(size);
 }
 
-template <typename Alloc>
-typename BasicProblem<Alloc>::LinearObjBuilder BasicProblem<Alloc>::AddObj(
+typename BasicProblem::LinearObjBuilder BasicProblem::AddObj(
     obj::Type type, NumericExpr expr, int num_linear_terms) {
   MP_ASSERT(linear_objs_.size() < MP_MAX_PROBLEM_ITEMS, "too many objectives");
   is_obj_max_.push_back(type != obj::MIN);
@@ -61,8 +59,7 @@ typename BasicProblem<Alloc>::LinearObjBuilder BasicProblem<Alloc>::AddObj(
   return LinearObjBuilder(&linear_expr);
 }
 
-template <typename Alloc>
-void BasicProblem<Alloc>::SetComplementarity(
+void BasicProblem::SetComplementarity(
     int con_index, int var_index, ComplInfo info) {
   MP_ASSERT(0 <= con_index && con_index < num_algebraic_cons(),
             "invalid index");
@@ -77,8 +74,7 @@ void BasicProblem<Alloc>::SetComplementarity(
   con.ub = info.con_ub();
 }
 
-template <typename Alloc>
-void BasicProblem<Alloc>::SetInfo(const ProblemInfo &info) {
+void BasicProblem::SetInfo(const ProblemInfo &info) {
   vars_.reserve(info.num_vars);
   is_var_int_.reserve(info.num_vars);
   is_obj_max_.reserve(info.num_objs);
@@ -95,8 +91,6 @@ void BasicProblem<Alloc>::SetInfo(const ProblemInfo &info) {
   linear_exprs_.reserve(num_common_exprs);
   nonlinear_exprs_.reserve(num_common_exprs);
 }
-
-template class BasicProblem< std::allocator<char> >;
 
 template void ReadNLFile(fmt::CStringRef filename, Problem &p, int flags);
 
