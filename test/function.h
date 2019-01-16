@@ -282,7 +282,11 @@ class Library {
   Library(const Library &);
   Library &operator=(const Library &);
 
+#ifdef MP_USE_UNIQUE_PTR
+  std::unique_ptr<LibraryImpl> impl_;
+#else
   std::auto_ptr<LibraryImpl> impl_;
+#endif
 
  public:
   explicit Library(fmt::CStringRef name);
