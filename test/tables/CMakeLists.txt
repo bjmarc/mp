@@ -5,7 +5,7 @@ if (ODBC_FOUND)
   set(CMAKE_REQUIRED_INCLUDES ${CMAKE_CURRENT_SOURCE_DIR})
   set(CMAKE_REQUIRED_LIBRARIES ${ODBC_LIBRARIES})
 
-  add_mp_test(odbc-test odbc-test.cc odbc.cc LIBS function ${ODBC_LIBRARIES})
+  add_mp_test(odbc-test odbc-test.cc odbc.cc LIBS function mp ${ODBC_LIBRARIES})
 
   include(CheckCXXSourceRuns)
   check_cxx_source_runs(
